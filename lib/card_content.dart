@@ -2,22 +2,25 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 const labelTextStyle = TextStyle(
-fontSize: 18.0,
-color: Color(0xFF8D8E98),
+  fontSize: 18.0,
+  color: Color(0xFF8D8E98),
 );
 
 class CardContent extends StatelessWidget {
   final IconData iconData;
   final String sex;
   final Color activeColor;
+  final Function onPress;
 
-  CardContent({@required this.iconData, @required this.sex, this.activeColor});
+  CardContent({@required this.iconData, @required this.sex, this.activeColor, this.onPress});
 
   @override
   Widget build(BuildContext context) {
-    return ReusableCard(
-      ownColor: this.activeColor,
-       // ownColor: activeCardColor,
+    return GestureDetector(
+      onTap: onPress,
+      child: ReusableCard(
+        ownColor: this.activeColor,
+        // ownColor: activeCardColor,
         cardChild: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -30,6 +33,8 @@ class CardContent extends StatelessWidget {
               style: labelTextStyle,
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
